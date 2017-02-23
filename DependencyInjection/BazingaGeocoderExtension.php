@@ -84,7 +84,6 @@ class BazingaGeocoderExtension extends Extension
             $this->addProvider('google_maps', array(
                 $googleMapsParams['locale'],
                 $googleMapsParams['region'],
-                $googleMapsParams['use_ssl'],
                 $googleMapsParams['api_key'],
             ));
         }
@@ -96,8 +95,7 @@ class BazingaGeocoderExtension extends Extension
                 $googleMapsBusinessParams['client_id'],
                 $googleMapsBusinessParams['api_key'],
                 $googleMapsBusinessParams['locale'],
-                $googleMapsBusinessParams['region'],
-                $googleMapsBusinessParams['use_ssl'],
+                $googleMapsBusinessParams['region']
             ));
         }
 
@@ -148,24 +146,6 @@ class BazingaGeocoderExtension extends Extension
             $this->addProvider('maxmind', array(
                 $maxmindParams['api_key'],
             ));
-        }
-
-        if (isset($config['providers']['maxmind_binary'])) {
-            $maxmindBinaryParams = $config['providers']['maxmind_binary'];
-
-            $provider = new Definition(
-                '%bazinga_geocoder.geocoder.provider.maxmind_binary.class%',
-                array(
-                    $maxmindBinaryParams['binary_file'],
-                    $maxmindBinaryParams['open_flag'],
-                )
-            );
-
-            $provider
-                ->setPublic(false)
-                ->addTag('bazinga_geocoder.provider');
-
-            $container->setDefinition('bazinga_geocoder.provider.maxmind_binary', $provider);
         }
 
         if (isset($config['providers']['opencage'])) {

@@ -301,9 +301,6 @@ bazinga_geocoder:
         geo_plugin:           []
         maxmind:
             api_key:              ~ # Required
-        maxmind_binary:
-            binary_file:          ~ # Required
-            open_flag:            null
         opencage:
             locale:               null
             use_ssl:              false
